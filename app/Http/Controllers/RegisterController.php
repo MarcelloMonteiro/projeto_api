@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Validator;
+use App\Models\Register;
 
 class RegisterController extends Controller
 {
@@ -24,6 +26,43 @@ class RegisterController extends Controller
     public function create()
     {
         //
+    }
+
+    public function upload(Request $request)
+    {
+        // $validated = $request->validated();
+        $validator = Validator::make($request->all(), [
+            'nome' => 'required|string',
+            'email' => 'required|string',
+            'senha' =>  'required|string',
+            'foto' => 'required|mimes:png,jpg,jpeg|max:2048'
+        ]);
+        if ($validator->fails()) {
+
+            return response()->json(['error' => $validator->errors()], 401);
+        }
+        if ($request->hasFile('foto') && $request->foto->isValid()) {
+            $nome = $request->input('nome');
+            $email = $request->input('email');
+            $senha = $request->input('senha');
+            $foto = $request->file('foto')->store('img', 'public');
+
+            $img = new Register();
+            $img->nome = $nome;
+            $img->email = $email;
+            $img->senha = $senha;
+            $img->foto = $foto;
+            $img->save();
+
+            return response()->json([
+                "success" => true,
+                "message" => "File successfully uploaded",
+                "nome" => $nome,
+                "email" => $email,
+                "conteudo" => $senha,
+                "foto" => $foto
+            ]);
+        }
     }
 
     /**
