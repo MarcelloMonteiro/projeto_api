@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\RegisterController;
+use App\Models\Register;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,5 +22,21 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('projeto')->group(function () {
     Route::post('register', [RegisterController::class, 'upload'])->name('register');
-    Route::get('registe/{id}', [RegisterController::class, 'show']);
+    Route::get('seach', function (Request $request) {
+
+        $query = Register::query();
+
+        if ($request->has('id')) {
+            $query->where('id', 'LIKE', '%' . $request->id . '%');
+        }
+
+
+        if ($request->has('email')) {
+            $query->where('email', '=', $request->email);
+        }
+
+        $seach = $query->paginate();
+
+        return $seach;
+    });
 });

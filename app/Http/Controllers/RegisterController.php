@@ -83,11 +83,7 @@ class RegisterController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($email)
-    {
-        $register = Register::find($email);
-        // $register = Register::get()->toJson(JSON_PRETTY_PRINT);
-        return response($register, 200);
-    }
+    { }
 
     /**
      * Show the form for editing the specified resource.
