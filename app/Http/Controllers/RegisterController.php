@@ -82,9 +82,11 @@ class RegisterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($email)
     {
-        //
+        $register = Register::find($email);
+        // $register = Register::get()->toJson(JSON_PRETTY_PRINT);
+        return response($register, 200);
     }
 
     /**
