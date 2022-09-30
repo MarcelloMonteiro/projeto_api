@@ -1,0 +1,171 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API",
+        "description": "L5 Swagger OpenApi description",
+        "contact": {
+            "email": "darius@matulionis.lt"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "api/projeto/register": {
+            "post": {
+                "tags": [
+                    "Register"
+                ],
+                "summary": "Cadastrar usuario",
+                "operationId": "39f02e25e94409705c83b3084d28e736",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": false,
+                        "schema": {
+                            "type": "int"
+                        }
+                    },
+                    {
+                        "name": "Nome",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Email",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Senha",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "password"
+                        }
+                    },
+                    {
+                        "name": "Foto",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "file"
+                        }
+                    },
+                    {
+                        "name": "created_at",
+                        "in": "path",
+                        "required": false,
+                        "schema": {
+                            "type": "date"
+                        }
+                    },
+                    {
+                        "name": "updated_at",
+                        "in": "path",
+                        "required": false,
+                        "schema": {
+                            "type": "date"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "example": [
+                                    {
+                                        "success": true,
+                                        "message": "File successfully uploaded",
+                                        "nome": "marcelo",
+                                        "email": "marcelo@monteiro.com",
+                                        "conteudo": "1231231",
+                                        "foto": "img\\/QvKzQRQCH5aHbkpL8YLecUqEMIM4o5Zceq3RRYkZ.jpg"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "api/projeto/seach": {
+            "get": {
+                "tags": [
+                    "Register"
+                ],
+                "summary": "buscar usuario",
+                "operationId": "1d481b71dccb7a12b716ca469c099cc6",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": false,
+                        "schema": {
+                            "type": "int"
+                        }
+                    },
+                    {
+                        "name": "Email",
+                        "in": "path",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "example": [
+                                    {
+                                        "id": "1",
+                                        "nome": "Teste",
+                                        "email": "teste@teste.com",
+                                        "senha": "1231231",
+                                        "foto": "img\\/AZLBFwqGlUQ5apVFuILMdjQT2zOO19aSrxm2Wrm8.jpg",
+                                        "created_at": "2022-09-29T21:07:16.000000Z",
+                                        "updated_at": "2022-09-29T21:07:16.000000Z",
+                                        "first_page_url": "http:\\/\\/127.0.0.1:8000\\/api\\/projeto\\/seach?page=1",
+                                        "from": 1,
+                                        "last_page": 1,
+                                        "last_page_url": "http:\\/\\/127.0.0.1:8000\\/api\\/projeto\\/seach?page=1",
+                                        "url": null,
+                                        "label": "Next &raquo;",
+                                        "active": false,
+                                        "next_page_url": null,
+                                        "path": "http:\\/\\/127.0.0.1:8000\\/api\\/projeto\\/seach",
+                                        "per_page": 15,
+                                        "prev_page_url": null,
+                                        "to": 1,
+                                        "total": 1
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    }
+}

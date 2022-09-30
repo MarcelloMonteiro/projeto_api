@@ -42,8 +42,11 @@ Route::prefix('projeto')->group(function () {
 
     Route::get('/', function () {
         return view('create');
-    });
+    })->name('add');
     Route::get('/success', function () {
         return view('success');
+    });
+    Route::get('/error', function () {
+        return view('error');
     });
 });

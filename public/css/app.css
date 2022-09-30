@@ -1,0 +1,22 @@
+.success-error {
+    width: 40rem;
+    top: 125px;
+    left: 414px;
+    position: relative;
+}
+.success-error-h1 {
+    top: -58px;
+    position: relative;
+}
+
+.create {
+    width: 40rem;
+    top: 125px;
+    left: 414px;
+    position: relative;
+}
+
+.create-h1 {
+    top: -58px;
+    position: relative;
+}

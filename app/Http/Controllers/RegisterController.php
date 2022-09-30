@@ -28,6 +28,77 @@ class RegisterController extends Controller
         //
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Register  $register
+     * @return \Illuminate\Http\Response
+     */
+
+    /**
+     * @OA\Post(
+     *     path="api/projeto/register",
+     *     summary="Cadastrar usuario",
+     *     tags={"Register"},
+     *     @OA\Parameter(
+     *         in="path",
+     *         name="id",
+     *         required=false,
+     *         @OA\Schema(type="int")
+     *     ),
+     *     @OA\Parameter(
+     *         in="path",
+     *         name="Nome",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         in="path",
+     *         name="Email",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *       @OA\Parameter(
+     *         in="path",
+     *         name="Senha",
+     *         required=true,
+     *         @OA\Schema(type="password")
+     *     ),
+     *       @OA\Parameter(
+     *         in="path",
+     *         name="Foto",
+     *         required=true,
+     *         @OA\Schema(type="file")
+     *     ),
+     *     @OA\Parameter(
+     *         in="path",
+     *         name="created_at",
+     *         required=false,
+     *         @OA\Schema(type="date")
+     *     ),
+     *     @OA\Parameter(
+     *         in="path",
+     *         name="updated_at",
+     *         required=false,
+     *         @OA\Schema(type="date")
+     *     ),
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 example={{"success":true,"message":"File successfully uploaded","nome":"marcelo","email":"marcelo@monteiro.com","conteudo":"1231231","foto":"img\/QvKzQRQCH5aHbkpL8YLecUqEMIM4o5Zceq3RRYkZ.jpg"}  }
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="OK"
+     *     ),
+     * )
+     */
+
+
     public function upload(Request $request)
     {
         // $validated = $request->validated();
@@ -39,7 +110,8 @@ class RegisterController extends Controller
         ]);
         if ($validator->fails()) {
 
-            return response()->json(['error' => $validator->errors()], 401);
+            return redirect('api/projeto/error');
+            // return response()->json(['error' => $validator->errors()], 401);
         }
         if ($request->hasFile('foto') && $request->foto->isValid()) {
             $nome = $request->input('nome');
@@ -70,10 +142,43 @@ class RegisterController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Register  $register
      * @return \Illuminate\Http\Response
+     */
+
+    /**
+     * @OA\Get(
+     *     path="api/projeto/seach",
+     *     summary="buscar usuario",
+     *     tags={"Register"},
+     *     @OA\Parameter(
+     *         in="path",
+     *         name="id",
+     *         required=false,
+     *         @OA\Schema(type="int")
+     *     ),
+     *     @OA\Parameter(
+     *         in="path",
+     *         name="Email",
+     *         required=false,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 example={{"id":"1","nome":"Teste","email":"teste@teste.com","senha":"1231231","foto":"img\/AZLBFwqGlUQ5apVFuILMdjQT2zOO19aSrxm2Wrm8.jpg","created_at":"2022-09-29T21:07:16.000000Z","updated_at":"2022-09-29T21:07:16.000000Z", "first_page_url":"http:\/\/127.0.0.1:8000\/api\/projeto\/seach?page=1","from":1,"last_page":1,"last_page_url":"http:\/\/127.0.0.1:8000\/api\/projeto\/seach?page=1","url":null,"label":"&laquo; Previous","active":false,"url":"http:\/\/127.0.0.1:8000\/api\/projeto\/seach?page=1","label":"1","active":true,"url":null,"label":"Next &raquo;","active":false, "next_page_url":null,"path":"http:\/\/127.0.0.1:8000\/api\/projeto\/seach","per_page":15,"prev_page_url":null,"to":1,"total":1 }}
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="OK"
+     *     ),
+     * )
      */
     public function show($email)
     { }
