@@ -39,4 +39,11 @@ Route::prefix('projeto')->group(function () {
 
         return $seach;
     });
+
+    Route::get('/', function () {
+        return view('create');
+    });
+    Route::get('/success', function () {
+        return view('success');
+    });
 });

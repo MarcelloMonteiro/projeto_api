@@ -15,7 +15,7 @@ class RegisterController extends Controller
      */
     public function index()
     {
-        //
+        // return view('create');
     }
 
     /**
@@ -54,14 +54,7 @@ class RegisterController extends Controller
             $img->foto = $foto;
             $img->save();
 
-            return response()->json([
-                "success" => true,
-                "message" => "File successfully uploaded",
-                "nome" => $nome,
-                "email" => $email,
-                "conteudo" => $senha,
-                "foto" => $foto
-            ]);
+            return redirect('api/projeto/success');
         }
     }
 
