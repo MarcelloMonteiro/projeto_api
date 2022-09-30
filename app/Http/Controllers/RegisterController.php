@@ -122,7 +122,7 @@ class RegisterController extends Controller
             $img = new Register();
             $img->nome = $nome;
             $img->email = $email;
-            $img->senha = $senha;
+            $img->senha = bcrypt($img->senha);
             $img->foto = $foto;
             $img->save();
 
